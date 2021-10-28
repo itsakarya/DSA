@@ -1,0 +1,116 @@
+//TREE
+/*
+level order traversal (o(n^2))
+*/
+#include<bits/stdc++.h>
+using namespace std;
+class node
+{
+  public:  
+    int data;
+    node* left;
+    node* right;
+    node(int d)
+    {
+        data=d;
+        left=nullptr;
+        right=nullptr;
+    }
+};
+node * buildtree()
+{
+    int d;
+    cin>>d;
+    if(d==-1)
+    return nullptr;
+    node* root=new node(d);
+    root->left=buildtree();
+    root->right=buildtree();
+    return root;
+}
+/*preorder
+follows:-root-left-right
+*/
+void display(node * root)
+{
+    if(root==nullptr)
+    return ;
+    cout<<root->data<<" ";
+    display(root->left);
+    display(root->right);
+}
+/*inorder
+follows:-left-root-right
+*/
+void inorder(node * root)
+{
+    if(root==nullptr)
+    return ;
+    display(root->left);
+    cout<<root->data<<" ";
+    display(root->right);
+}
+/*postorder
+follows:-left-right-root
+*/
+void postorder(node * root)
+{
+    if(root==nullptr)
+    return ;
+    display(root->left);
+    display(root->right);
+    cout<<root->data<<" ";
+
+}
+//level order traversal 
+/*
+logic fetch height 
+and print all level 
+
+*/
+int height(node * root)
+{
+    if(root==nullptr)
+    return 0;
+    int lh=height(root->left);
+    int rh=height(root->right);
+    return max(lh,rh)+1;
+
+}
+// print kth level only
+void printkthlevel(node* root,int k)
+{
+if(root==nullptr)
+return ;
+if(k==1)
+{
+cout<<root->data<<" ";
+return;
+}
+printkthlevel(root->left,k-1);
+printkthlevel(root->right,k-1);
+
+}
+//print all levels (o(n^2))
+void printall_level(node * root)
+{
+int h=height(root);
+for(int i=1;i<=h;i++)
+{
+    printkthlevel(root,i);
+    cout<<endl;
+}
+}
+
+
+int main()
+{
+node * root= buildtree();
+display(root);
+cout<<"\n";
+inorder(root);
+cout<<"\n";
+postorder(root);
+cout<<"\n";
+printall_level(root);
+}

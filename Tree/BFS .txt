@@ -1,0 +1,96 @@
+//TREE
+/*
+bfs (level order print having time complexity : 0(n))
+*/
+#include<bits/stdc++.h>
+using namespace std;
+class node
+{
+  public:  
+    int data;
+    node* left;
+    node* right;
+    node(int d)
+    {
+        data=d;
+        left=nullptr;
+        right=nullptr;
+    }
+};
+node * buildtree()
+{
+    int d;
+    cin>>d;
+    if(d==-1)
+    return nullptr;
+    node* root=new node(d);
+    root->left=buildtree();
+    root->right=buildtree();
+    return root;
+}
+//LOGIC
+/*
+do insertion of root node  (in a stack)
+while poping stack from front do insertion of poped node  child
+*/
+// void bfs(node* root)
+// {
+// queue<node *> q;
+// q.push(root);  // store root 
+
+// while(!q.empty())
+// {
+//     node * tmp=q.front();  //  fetch it through tmp.. node
+//     cout<<tmp->data<<" ";  // print
+    
+//     q.pop();               // pop fun in queue basically pop the oldest element
+//                            // in it basically queue front
+    
+//     if(tmp->left)
+//      q.push(tmp->left);
+//      if(tmp->right)
+//      q.push(tmp->right);
+    
+// }
+// return ;
+// }
+void bfs(node* root)
+{
+queue<node *> q;
+q.push(root);  // store root 
+q.push(NULL);
+while(!q.empty())
+{
+    node * tmp=q.front();  //  fetch it through tmp.. node
+ 
+    if(tmp==NULL)
+    {
+        cout<<"\n";
+        q.pop();
+        if(!q.empty())
+        q.push(nullptr);
+    }
+    else
+    {
+    cout<<tmp->data<<" "; 
+    q.pop();               
+    if(tmp->left)
+     q.push(tmp->left);
+     if(tmp->right)
+     q.push(tmp->right);
+    }
+}
+
+}
+
+int main()
+{
+node * root= buildtree();
+// display(root);
+// cout<<"\n";
+// inorder(root);
+// cout<<"\n";
+// postorder(root);
+cout<<"\n";
+bfs(root);
+}

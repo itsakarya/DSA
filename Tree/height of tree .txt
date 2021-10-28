@@ -1,0 +1,72 @@
+//TREE
+/*
+height of tree 
+*/
+#include<bits/stdc++.h>
+using namespace std;
+class node
+{
+  public:  
+    int data;
+    node* left;
+    node* right;
+    node(int d)
+    {
+        data=d;
+        left=nullptr;
+        right=nullptr;
+    }
+};
+node * buildtree()
+{
+    int d;
+    cin>>d;
+    if(d==-1)
+    return nullptr;
+    node* root=new node(d);
+    root->left=buildtree();
+    root->right=buildtree();
+    return root;
+}
+
+int height(node * root)
+{
+    if(root==nullptr)
+    return 0;
+    int lh=height(root->left);
+    int rh=height(root->right);
+    return max(lh,rh)+1;
+
+}
+// print kth level only
+void printkthlevel(node* root,int k)
+{
+if(root==nullptr)
+return ;
+if(k==1)
+{
+cout<<root->data<<" ";
+return;
+}
+printkthlevel(root->left,k-1);
+printkthlevel(root->right,k-1);
+
+}
+//print all levels (o(n^2))
+void printall_level(node * root)
+{
+int h=height(root);
+for(int i=1;i<=h;i++)
+{
+    printkthlevel(root,i);
+    cout<<endl;
+}
+}
+
+
+int main()
+{
+node * root= buildtree();
+printall_level(root);
+cout<<endl<<" "<<"height :"<<height(root);
+}
