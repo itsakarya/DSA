@@ -1,0 +1,102 @@
+//TREE
+/*
+DIAMETER OF A TREE :- LONGEST DIS B/W ANY NODE
+LOGIC:-
+    // for calculating diameter we have to make 3 cases 
+    //either daiametr would passes from 
+    //root
+    //left sub tree
+    //right sub tree
+    //o(n^2)
+soln:-
+1. recursuvely 
+2. optimised
+*/
+#include<bits/stdc++.h>
+using namespace std;
+class node
+{
+  public:  
+    int data;
+    node* left;
+    node* right;
+    node(int d)
+    {
+        data=d;
+        left=nullptr;
+        right=nullptr;
+    }
+};
+node * buildtree()
+{
+    int d;
+    cin>>d;
+    if(d==-1)
+    return nullptr;
+    node* root=new node(d);
+    root->left=buildtree();
+    root->right=buildtree();
+    return root;
+}
+
+void bfs(node* root)
+{
+queue<node *> q;
+q.push(root);  // store root 
+q.push(NULL);
+while(!q.empty())
+{
+    node * tmp=q.front();  //  fetch it through tmp.. node
+ 
+    if(tmp==NULL)
+    {
+        cout<<"\n";
+        q.pop();
+        if(!q.empty())
+        q.push(nullptr);
+    }
+    else
+    {
+    cout<<tmp->data<<" "; 
+    q.pop();               
+    if(tmp->left)
+     q.push(tmp->left);
+     if(tmp->right)
+     q.push(tmp->right);
+    }
+}
+}
+int height(node* root)
+{
+    if(root==nullptr)
+    return 0;
+    int hl=height(root->left);
+    int hr=height(root->right);
+    return max(hl,hr)+1;
+}
+//CODE
+// 1. recursively
+int diameter(node* root)
+{
+    if(root==nullptr)
+    return 0;
+   
+    int h1=height(root->left);
+    int h2=height(root->right);
+   
+    int opt1=h1+h2;
+   
+    int opt2=diameter(root->left);
+    int opt3=diameter(root->right);
+   
+    return max(opt1,max(opt2,opt3));
+}
+
+int main()
+{
+node * root= buildtree();
+bfs(root);
+cout<<"\n"<<"diameter"<<"\n";
+cout<<diameter(root);
+
+}
