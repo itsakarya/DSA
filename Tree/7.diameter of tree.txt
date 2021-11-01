@@ -91,6 +91,29 @@ int diameter(node* root)
    
     return max(opt1,max(opt2,opt3));
 }
+// optimised way is by using pairs so that we can reduce complexity in calculating height;
+//code
+// class pair{
+//     int height;
+//     int diameter;
+// };
+// pair fast_diameter(node* root)
+// {    
+//     pair p;
+//     if(root==nullptr)
+//     {
+//         p.height=0;
+//         p.diameter=0;
+//         return p;
+//     }
+//     pair left=fast_diameter(root->left);
+//     pair right=fast_diameter(root->right);
+    
+//     p.height=max(left.height,right.height)+1;
+//     p.diameter=max((left.height+right.height),max(left.heigt,right.height));
+    
+//      return p;
+// }
 
 int main()
 {
