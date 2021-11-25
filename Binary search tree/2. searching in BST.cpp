@@ -1,6 +1,4 @@
-#include <iostream>
-#include<queue>
-#include<climits>
+#include <bits/stdc++>
 using namespace std;
 
 class node{
