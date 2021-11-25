@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// catlan no basically to count no of bst num=2nCn/(n+1) && total no.. of binary tree =  num*(n!)
+// catlan no basically to count no of bst num=2nCn/(n+1) && total no.. of binary tree =  num*(n!) // it's an outcome of P&C
      long long int binCoeff(int n, int k){
         long long int res = 1;
         for(int i = 0; i < k; i++){
