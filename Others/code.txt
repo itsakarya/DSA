@@ -1,0 +1,111 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//global variables
+int a=2;
+
+int fun(int b,int c)
+{
+    int k=0;  //local variable
+    return (a+b+c);
+}
+
+
+
+
+class class3{
+  
+  int w=4;
+  
+  public:
+    int v=4;
+    
+    void fun()
+    {
+        cout<<(v+w);
+    }
+  
+    
+};
+
+int main()
+{
+    //variables
+    int c=2;
+    char ch='t';
+    string str="Abhishek";
+    int arr[5]={1,2,3,4,5};
+    int ip;
+    int arr1[5];
+        
+    //input
+    cin>>ip;
+    
+    //output
+    cout<<ip<<endl;
+    cout<<ch<<" "<<str<<" "<<c<<endl;
+    
+    //loops
+    for(int i=0;i<5;i++)
+    {
+        cin>>arr1[i];
+    }
+    
+    for(int i=0;i<5;i++)
+    {
+        cout<<arr1[i]<<" ";
+        cout<<"hi";
+    }
+    cout<<endl;
+    //class
+    class3 obj;
+    
+    obj.fun();
+    
+    //while
+    cout<<endl;
+    int i=0;
+    while(i!=4)
+    {
+        cout<<"i="<<i<<endl;
+        i++;
+    }
+    
+    
+    //operators
+    
+    //unary op.- ++,--
+    int j=0;
+    j++;
+    cout<<j<<endl;
+    j--;
+    cout<<j<<endl;
+    
+    //binary operators
+    //+ - * /
+    
+    int o=4;
+    int n=2;
+    
+    cout<<(o+n)<<" "<<(o*n)<<" "<<(o/n)<<" "<<(o-n)<<endl;
+    
+    //relational operators
+    //< > <> <= >= == !=
+    
+    cout<<(o>n)<<" "<<(o!=n)<<" "<<(o==n); 
+    
+    //ternary op.
+    
+    //cond?x:y
+    
+    cout<<endl;
+    int x;
+    x=(o>n)?o:n;
+    cout<<x<<endl;
+    
+    cout<<fun(1,2);
+    
+    //cout<<k;
+    cout<<endl<<a;
+    
+}

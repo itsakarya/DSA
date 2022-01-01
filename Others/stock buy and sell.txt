@@ -1,0 +1,68 @@
+Video link for reference- https://www.youtube.com/watch?v=K8iHi8AW1ls
+
+Code- 
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    
+    int t;
+    cin>>t;
+    
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        
+        vector<int> v;
+        //taking input
+        for(int i=0;i<n;i++)
+        {
+            int x;
+            cin>>x;
+            v.push_back(x);
+        }
+        
+
+	int diff=0;
+        int flag=0;
+        
+        for(int i=1;i<n;i++)
+        {
+            //add elements if stock price is increasing
+            if(v[i-1]<=v[i])
+            {
+                diff+=v[i]-v[i-1];
+                if(flag==0)
+                {
+                    cout<<"("<<i-1<<" ";
+                    flag=1;
+                }
+                //for last element
+                if(i==n-1 && flag)
+                {
+                    flag=0;
+                
+                    cout<<i<<")"<<" ";
+                }
+            }
+            //local maxima arrived and after this start agin
+            else if(v[i-1]>v[i] && flag)
+            {
+                
+                    flag=0;
+                    cout<<i-1<<")"<<" ";
+                
+            }
+        }
+        
+        //if stock price keeps on decreasing
+        if(diff==0)
+            cout<<"No Profit"<<endl;
+        else
+            cout<<endl;
+    }
+    
+    return 0;
+}

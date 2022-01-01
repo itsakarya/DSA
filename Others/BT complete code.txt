@@ -1,0 +1,137 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class node{
+  public:
+  int data;
+  node* left;
+  node* right;
+  
+  //constructor
+  node(int d)
+  {
+      data=d;
+      left=NULL;
+      right=NULL;
+  }
+};
+
+node* buildtree()
+{
+    int d;
+    cin>>d;
+    
+    if(d==-1)
+        return NULL;
+    
+    node* root=new node(d);
+    
+    //left child
+    root->left=buildtree();
+    
+    //right child
+    root->right=buildtree();
+    
+    return root;
+}
+
+//inorder traversal
+void printIn(node* root)
+{
+    if(root==NULL)
+        return;
+    
+    printIn(root->left);
+    cout<<root->data<<" ";
+    printIn(root->right);
+}
+
+//preorder traversal
+void printPre(node* root)
+{
+    if(root==NULL)
+        return;
+    
+    cout<<root->data<<" ";
+    printPre(root->left);
+    printPre(root->right);
+}
+
+
+//post order traversal
+void printPost(node* root)
+{
+    if(root==NULL)
+        return;
+    printPost(root->left);
+    printPost(root->right);
+    cout<<root->data<<" ";
+}
+
+int height(node* root)
+{
+    if(root==NULL)
+        return 0;
+    
+    int hr=height(root->right);
+    int hl=height(root->left);
+    
+    return max(hr,hl)+1;
+}
+
+int diameter(node* root)
+{
+    if(root==NULL)
+        return 0;
+    
+    //hr+hl
+    int hr=height(root->right);
+    int hl=height(root->left);
+    
+    int op1=hr+hl;
+    
+    //op2
+    int op2=diameter(root->left);
+    
+    //op3
+    int op3=diameter(root->right);
+    
+    return max(op1,max(op2,op3));
+    
+}
+
+int main()
+{
+    node* root=buildtree();
+    
+    //inorder 
+    cout<<"Inorder-";
+    printIn(root);
+    
+    cout<<endl;
+    
+    //post order
+    cout<<"Post order-";
+    printPost(root);
+    
+    cout<<endl;
+    
+    //pre order
+    cout<<"Pre order-";
+    printPre(root);
+    cout<<endl;
+    
+    cout<<"height="<<height(root)<<endl;
+    
+    cout<<"Diameter="<<diameter(root);
+    
+    return 0;
+}
+
+//input-3 4 -1 6 -1 -1 5 1 -1 -1 -1
+//output-
+// Inorder-4 6 3 1 5 
+// Post order-6 4 1 5 3 
+// Pre order-3 4 6 5 1 
+// height=3
+// Diameter=4

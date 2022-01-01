@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    
+    int arr[n];
+    
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    
+    //bubble sort 
+    for(int j=0;j<n;j++)
+    {
+        //iteration of 1 time
+        for(int i=0;i<n-1;i++)
+        {
+            if(arr[i]>arr[i+1])
+                swap(arr[i],arr[i+1]);
+        }
+    }
+    //TC=O(n^2)
+    //SC= O(1)
+    
+    for(int i=0;i<n;i++)
+        cout<<arr[i]<<" ";
+     
+    return 0;  
+}
+
+//input=5
+//9 8 2 3 1
+//output= 1 2 3 5 8 9

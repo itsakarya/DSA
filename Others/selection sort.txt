@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    
+    int arr[n];
+    
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    
+    //selection sort 
+    for(int i=0;i<n;i++)
+    {
+        //minidx
+        int min_idx=i;
+        
+        //iterating over remaining array
+        for(int j=i;j<n;j++)
+        {
+            if(arr[j]<arr[min_idx])
+                min_idx=j;
+            
+        }
+        swap(arr[i],arr[min_idx]);
+    }
+    
+    for(int i=0;i<n;i++)
+        cout<<arr[i]<<" ";
+     
+    return 0;  
+}
+
+//input=5
+//5 3 2 1 4
+//output= 1 2 3 4 5
